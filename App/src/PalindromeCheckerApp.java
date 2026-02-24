@@ -1,34 +1,33 @@
+public class PalindromeCheckerApp {
 
+    public static void main(String[] args) {
 
-                    public class PalindromeCheckerApp {
+        // Original string with spaces and mixed case
+        String input = "Nurses Run";
 
-                    // Recursive method to check palindrome
-                    public static boolean isPalindrome(String str, int start, int end) {
+        // Step 1: Normalize string
+        // Convert to lowercase and remove spaces using regular expression
+        String normalized = input.toLowerCase().replaceAll("\\s+", "");
 
-                        // Base condition: if pointers cross or meet
-                        if (start >= end) {
-                            return true;
-                        }
+        // Step 2: Apply two-pointer palindrome logic
+        int start = 0;
+        int end = normalized.length() - 1;
+        boolean isPalindrome = true;
 
-                        // If characters do not match
-                        if (str.charAt(start) != str.charAt(end)) {
-                            return false;
-                        }
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
 
-                        // Recursive call for inner substring
-                        return isPalindrome(str, start + 1, end - 1);
-                    }
-
-                    public static void main(String[] args) {
-
-                        String word = "madam";
-
-                        boolean result = isPalindrome(word, 0, word.length() - 1);
-
-                        if (result) {
-                            System.out.println(word + " is a Palindrome.");
-                        } else {
-                            System.out.println(word + " is NOT a Palindrome.");
-                        }
-                    }
-                }
+        // Step 3: Display result
+        if (isPalindrome) {
+            System.out.println(input + " is a Palindrome (ignoring spaces and case).");
+        } else {
+            System.out.println(input + " is NOT a Palindrome.");
+        }
+    }
+}
