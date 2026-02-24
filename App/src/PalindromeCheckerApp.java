@@ -1,33 +1,44 @@
-public class PalindromeCheckerApp {
+// Palindrome service class
+class PalindromeChecker {
 
-    public static void main(String[] args) {
+    // Encapsulated method to check palindrome
+    public boolean checkPalindrome(String input) {
 
-        // Original string with spaces and mixed case
-        String input = "Nurses Run";
+        if (input == null) {
+            return false;
+        }
 
-        // Step 1: Normalize string
-        // Convert to lowercase and remove spaces using regular expression
-        String normalized = input.toLowerCase().replaceAll("\\s+", "");
-
-        // Step 2: Apply two-pointer palindrome logic
         int start = 0;
-        int end = normalized.length() - 1;
-        boolean isPalindrome = true;
+        int end = input.length() - 1;
 
         while (start < end) {
-            if (normalized.charAt(start) != normalized.charAt(end)) {
-                isPalindrome = false;
-                break;
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
             }
             start++;
             end--;
         }
 
-        // Step 3: Display result
-        if (isPalindrome) {
-            System.out.println(input + " is a Palindrome (ignoring spaces and case).");
+        return true;
+    }
+}
+
+// Main application class
+public class UseCase11PalindromeCheckerApp {
+
+    public static void main(String[] args) {
+
+        String word = "level";
+
+        // Create object of PalindromeChecker
+        PalindromeChecker checker = new PalindromeChecker();
+
+        boolean result = checker.checkPalindrome(word);
+
+        if (result) {
+            System.out.println(word + " is a Palindrome.");
         } else {
-            System.out.println(input + " is NOT a Palindrome.");
+            System.out.println(word + " is NOT a Palindrome.");
         }
     }
 }
