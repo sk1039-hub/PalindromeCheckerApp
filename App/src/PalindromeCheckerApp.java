@@ -1,47 +1,50 @@
 
 
 
-    import java.util.Scanner;
 
-        public class PalindromeCheckerApp {
 
-            public static void main(String[] args) {
+import java.util.Deque;
+import java.util.ArrayDeque;
 
-                // Create Scanner object to take user input
-                Scanner scanner = new Scanner(System.in);
+            public class PalindromeCheckerApp {
 
-                // Prompt user
-                System.out.print("Enter a string to check palindrome: ");
-                String input = scanner.nextLine();
+                public static void main(String[] args) {
 
-                // Convert string to char array
-                char[] charArray = input.toCharArray();
+                    // Original string
+                    String word = "refer";
 
-                int start = 0;
-                int end = charArray.length - 1;
-                boolean isPalindrome = true;
+                    // Create Deque
+                    Deque<Character> deque = new ArrayDeque<>();
 
-                // Two-pointer comparison
-                while (start < end) {
-                    if (charArray[start] != charArray[end]) {
-                        isPalindrome = false;
-                        break;
+                    // Insert characters into deque
+                    for (int i = 0; i < word.length(); i++) {
+                        deque.addLast(word.charAt(i));
                     }
-                    start++;
-                    end--;
-                }
 
-                // Print result
-                if (isPalindrome) {
-                    System.out.println(input + " is a Palindrome.");
-                } else {
-                    System.out.println(input + " is NOT a Palindrome.");
-                }
+                    boolean isPalindrome = true;
 
-                // Close scanner
-                scanner.close();
+                    // Compare front and rear elements
+                    while (deque.size() > 1) {
+                        char front = deque.removeFirst();
+                        char rear = deque.removeLast();
+
+                        if (front != rear) {
+                            isPalindrome = false;
+                            break;
+                        }
+                    }
+
+                    // Print result
+                    if (isPalindrome) {
+                        System.out.println(word + " is a Palindrome.");
+                    } else {
+                        System.out.println(word + " is NOT a Palindrome.");
+                    }
+                }
             }
-        }
+
+
+
 
 
 
