@@ -1,29 +1,33 @@
-public class PalindromeCheckerApp {
-    public static void main (String[] args){
-        System.out.println("Welcome to palindrome checker app mangement");
 
-    }
-}
-public class UseCase2PalindromeCheckerApp {
+import java.util.Stack;
 
-    public static void main(String[] args) {
+    public class PalindromeCheckerApp {
 
-        // Hardcoded string (String Literal)
-        String word = "madam";
+        public static void main(String[] args) {
 
-        // Variable to store reversed string
-        String reversed = "";
+            // Original string
+            String word = "civic";
 
-        // Reverse the string using loop
-        for (int i = word.length() - 1; i >= 0; i--) {
-            reversed = reversed + word.charAt(i);
+            // Create Stack
+            Stack<Character> stack = new Stack<>();
+
+            // Push characters into stack
+            for (int i = 0; i < word.length(); i++) {
+                stack.push(word.charAt(i));   // Push operation
+            }
+
+            // Pop characters and build reversed string
+            String reversed = "";
+            while (!stack.isEmpty()) {
+                reversed = reversed + stack.pop();   // Pop operation
+            }
+
+            // Compare original and reversed
+            if (word.equals(reversed)) {
+                System.out.println(word + " is a Palindrome.");
+            } else {
+                System.out.println(word + " is NOT a Palindrome.");
+            }
         }
-
-        // Check palindrome using if-else
-        if (word.equals(reversed)) {
-            System.out.println(word + " is a Palindrome.");
-        } else {
-            System.out.println(word + " is NOT a Palindrome.");
-        }
     }
-}
+
